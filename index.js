@@ -15,32 +15,33 @@ client.once("ready", () => {
   console.log("Ready!");
 });
 
-client.login(token);
 
 client.commands = new Collection();
 
 const commandsPath = path.join(__dirname, "commands");
 const commandFiles = fs
-  .readdirSync(commandsPath)
-  .filter((file) => file.endsWith(".js"));
+.readdirSync(commandsPath)
+.filter((file) => file.endsWith(".js"));
 
 for (const file of commandFiles) {
-  const filePath = path.join(commandsPath, file);
-  const command = require(filePath);
-  // Set a new item in the Collection
-  // With the key as the command name and the value as the exported module
+	const filePath = path.join(commandsPath, file);
+	const command = require(filePath);
+	// Set a new item in the Collection
+	// With the key as the command name and the value as the exported module
   client.commands.set(command.data.name, command);
 }
 
 function generateRandom() {
-  let random = Math.floor(Math.random() * 100 + 1);
-  let reminder = random % 20;
-  console.log(random);
-  if (random == 100 || random == 1) console.log("Legendary");
-  else if (reminder == 19) {
-    console.log("rare");
-  } else if (reminder !== 19) {
-    reminder = random % 10;
-    if (reminder == 9) console.log("common");
-  } else console.log("eggs");
+	let random = Math.floor(Math.random() * 100 + 1);
+	let reminder = random % 20;
+	console.log(random);
+	if (random == 100 || random == 1) console.log("Legendary");
+	else if (reminder == 19) {
+		console.log("rare");
+	} else if (reminder !== 19) {
+		reminder = random % 10;
+		if (reminder == 9) console.log("common");
+	} else console.log("eggs");
 }
+
+client.login(token);
