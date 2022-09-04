@@ -1,6 +1,5 @@
 //const { Client, Intents } = require('discord.js');
-const { token } = require("./config.json");
-const test = require("./config.json");
+const { clientId, guildId, token } = require("./config.json");
 const fs = require("fs");
 const path = require("path");
 
@@ -14,7 +13,6 @@ const client = new Client({ intents: [GatewayIntentBits.Guilds] });
 client.once("ready", () => {
   console.log("Ready!");
 });
-
 
 client.commands = new Collection();
 
