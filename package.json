@@ -9,7 +9,10 @@
   "version": "1.0.0",
   "main": "index.js",
   "scripts": {
-    "test": "nodemon index.js"
+    "main": "node index.js",
+    "test": "nodemon index.js",
+    "commands": "node deploy-commands.js"
+
   },
   "repository": {
     "type": "git",
