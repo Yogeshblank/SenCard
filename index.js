@@ -1,8 +1,8 @@
-require("dotenv").config();
 //const { Client, Intents } = require('discord.js');
 const { token } = require("./config.json");
-const fs = require("node:fs");
-const path = require("node:path");
+const test = require("./config.json");
+const fs = require("fs");
+const path = require("path");
 
 // Require the necessary discord.js classes
 const { Client, Collection, GatewayIntentBits } = require("discord.js");
@@ -14,6 +14,8 @@ const client = new Client({ intents: [GatewayIntentBits.Guilds] });
 client.once("ready", () => {
   console.log("Ready!");
 });
+
+client.login(token);
 
 client.commands = new Collection();
 
@@ -30,16 +32,15 @@ for (const file of commandFiles) {
   client.commands.set(command.data.name, command);
 }
 
-client.login(token);
-
-let random = Math.floor(Math.random() * 100 + 1);
-let reminder = random % 20;
-console.log(random);
-if (random == 100 || random == 1) console.log("Legendary");
-else if (reminder == 19) {
-  console.log("rare");
-} else if (reminder !== 19) {
-  reminder = random % 10;
-  if (reminder == 9) console.log("common");
-} else console.log("eggs");
-console.log(token);
+function generateRandom() {
+  let random = Math.floor(Math.random() * 100 + 1);
+  let reminder = random % 20;
+  console.log(random);
+  if (random == 100 || random == 1) console.log("Legendary");
+  else if (reminder == 19) {
+    console.log("rare");
+  } else if (reminder !== 19) {
+    reminder = random % 10;
+    if (reminder == 9) console.log("common");
+  } else console.log("eggs");
+}
